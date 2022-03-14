@@ -11,6 +11,6 @@ COPY . .
 
 COPY ./entrypoint.sh ./entrypoint.sh
 
-CMD php artisan serve --host=0.0.0.0 
+CMD bash -c "composer install && php artisan serve --host 0.0.0.0"
 
 EXPOSE 80

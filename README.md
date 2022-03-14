@@ -60,13 +60,15 @@ app/Http/Controllers/*
 ### Middlewares
 app/Http/Middleware/ForceJsonResponse.php
 
+app/Http/Middleware/CheckCorrectUser.php
 
 ### Routes
 API: routes/api.php
 
 ### Tests, Factories, Seeder
-database/factories
-tests/Unit
+database/factories/*
+
+tests/Unit/*
 
 
 ## Sources
