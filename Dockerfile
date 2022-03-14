@@ -10,6 +10,7 @@ WORKDIR /app
 COPY . .
 
 COPY ./entrypoint.sh ./entrypoint.sh
-ENTRYPOINT ./entrypoint.sh
+
+CMD php artisan serve --host=0.0.0.0 
 
 EXPOSE 80
