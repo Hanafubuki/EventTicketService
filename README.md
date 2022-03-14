@@ -42,7 +42,6 @@ docker exec -it main ./vendor/bin/phpunit
 
 
 ## Project Structure
-<p><img src="Class_Diagram.png" width="600"></p>
 
 Used Laravel's official package [Passport](https://laravel.com/docs/9.x/passport) and header-based Token Bearer authentication scheme for user authentification.
 
