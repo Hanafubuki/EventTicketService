@@ -25,9 +25,8 @@ To run this project:
 2. cd EventTicketService
 3. docker-compose build
 4. docker-compose up
-5. docker exec -it main composer install
-6. docker exec -it main /bin/bash ./entrypoint.sh
-7. Access localhost:8000
+5. docker exec -it main /bin/bash ./entrypoint.sh
+6. Access localhost:8000
 
 ## APIs
 Check below the list of endpoints:
