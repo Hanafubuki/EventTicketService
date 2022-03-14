@@ -30,7 +30,7 @@ To run this project:
 
 ## APIs
 Check below the list of endpoints:
-* https://documenter.getpostman.com/view/11082955/TVYDfKf4
+* https://documenter.getpostman.com/view/11082955/UVsJwSQz
 
 
 ## Tests
