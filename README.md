@@ -35,8 +35,10 @@ Check below the list of endpoints:
 
 ## Tests
 
-### Run HTTP tests
-php artisan test
+### Run tests
+docker exec -it main php artisan test
+OR
+docker exec -it main ./vendor/bin/phpunit
 
 
 ## Project Structure
