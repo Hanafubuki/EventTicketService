@@ -43,6 +43,7 @@ Route::middleware(['auth:api'])->namespace('App\Http\Controllers')->group(functi
         return response(['message' => 'Event not found'], 404);
     });
     Route::get('event', 'EventsController@getAll'); 
+    Route::delete('events', 'EventsController@destroyAll'); 
 
     Route::resource('ticket', 'TicketsController')->missing(function(){
         return response(['message' => 'Ticket not found'], 404);

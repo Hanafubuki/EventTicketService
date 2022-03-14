@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\UpdateEventRequest;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -65,14 +66,16 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(UpdateEventRequest $request, Event $event)
     {
-        $validated = $request->validated();
-        $event->text = $validated['text'];
-
+        $event->fill($request->validated());
+        $event->save();
         if($event->save()) {
-          return new EventResource($event);
+            return new EventResource($event);
         }
+        return  response([
+            'message' => 'Couldn\'t create event',
+        ], 500);
     }
 
     /**
@@ -96,5 +99,28 @@ class EventsController extends Controller
                 'message' => 'Couldn\'t delete event',
             ], 500);
         }          
+    }
+
+    public function destroyAll()
+    {
+        $events = Event::get();
+        foreach($events as $event){
+            try{
+                DB::transaction(function () use($event) {
+                    $event->ticket()->where('event_id', $event->id)->delete();    
+                    $event->delete();
+                }, 5); //number of times to retry if a deadlock occurs
+                // return response([
+                //     'message' => 'Event deleted',
+                // ], 204);  
+            }catch (\Exception $e){
+                return response([
+                    'message' => 'Couldn\'t delete event',
+                ], 500);
+            }  
+        }    
+        return response([
+                 'message' => 'Events deleted',
+             ], 204);    
     }
 }
